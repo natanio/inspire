@@ -1,7 +1,7 @@
 Inspire::Application.routes.draw do
   get "pages/home"
-  get "pages/about"
-  get "pages/contact"
+  get "about" => "pages#about"
+  get "contact" => "pages#contact"
   resources :books
 
   root "books#index"

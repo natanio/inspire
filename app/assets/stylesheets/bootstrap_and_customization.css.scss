@@ -1,2 +1,29 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald:400,700,300);
+
+$navbar-border-radius: none;
+$navbar-inverse-color: #ecf0f1;
+$navbar-inverse-link-color: #ecf0f1;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.navbar-brand {
+	font-family: 'Oswald', sans-serif;
+}
+
+.masthead {
+	position: relative;
+	padding: 30px 15px;
+	text-align: center;
+}
+
+.masthead h1 {
+	font-family: 'Oswald', sans-serif;
+	font-size: 55px;
+}
+
+.masthead .lead {
+	width: 80%;
+	font-size: 26px;
+	margin: 0 auto 30px;
+}
