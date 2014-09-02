@@ -20,7 +20,7 @@
   <tbody>
     <% @books.each do |book| %>
       <tr>
-        <td><%= image_tag pin.image.url(:medium) %></td>
+        <td><%= image_tag book.image.url(:medium) %></td>
         <td><%= book.title %></td>
         <td><%= book.link %></td>
         <td><%= book.genre %></td>
