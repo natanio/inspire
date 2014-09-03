@@ -1,5 +1,6 @@
 class InspirationsController < ApplicationController
   before_action :set_inspiration, only: [:show, :edit, :update, :destroy]
+  before_action :set_book
   before_action :authenticate_user!, except: [:show]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
@@ -28,6 +29,7 @@ class InspirationsController < ApplicationController
   def create
     @inspiration = Inspiration.new(inspiration_params)
     @inspiration.user_id = current_user.id
+    @inspiration.book_id = @book_id
 
     respond_to do |format|
       if @inspiration.save
@@ -68,6 +70,10 @@ class InspirationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_inspiration
       @inspiration = Inspiration.find(params[:id])
+    end
+
+    def set_book
+      @book = Book.find(params[:book_id])
     end
 
     def correct_user
