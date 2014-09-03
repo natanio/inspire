@@ -76,11 +76,11 @@ class BooksController < ApplicationController
 
     def correct_user
       @book = current_user.books.find_by(id: params[:id])
-      redirect_to books_path, notice: "Not authorized to edit this book" if @book.nil?
+      redirect_to books_path, alert: "Not authorized to edit this book" if @book.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:title, :link, :genre, :image, :description, :date_publish)
+      params.require(:book).permit(:title, :link, :genre, :image, :description, :date_publish, :preview, :user_id)
     end
 end
