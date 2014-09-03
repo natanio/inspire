@@ -7,6 +7,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
@@ -15,6 +16,8 @@ gem 'httpclient'
 gem 'devise'
 gem 'paperclip', '~> 3.0'
 gem 'aws-sdk', '~> 1.20.0'
+gem 'masonry-rails', '~> 0.2.0'
+gem "html_truncator", "~>0.2"
 
 group :development, :test do
      gem 'sqlite3'

@@ -67,6 +67,8 @@ GEM
     execjs (2.2.1)
     hashie (2.0.5)
     hike (1.2.3)
+    html_truncator (0.4.0)
+      nokogiri (~> 1.5)
     httpclient (2.4.0)
     httpi (2.2.5)
       rack
@@ -77,10 +79,15 @@ GEM
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-turbolinks (2.1.0)
+      railties (>= 3.1.0)
+      turbolinks
     json (1.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    masonry-rails (0.2.1)
+      rails
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.10.1)
@@ -93,6 +100,7 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     pg (0.17.1)
+    pg (0.17.1-x86-mingw32)
     polyglot (0.3.5)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -168,9 +176,12 @@ DEPENDENCIES
   bootstrap-sass (~> 3.2.0)
   coffee-rails (~> 4.0.0)
   devise
+  html_truncator (~> 0.2)
   httpclient
   jbuilder (~> 1.2)
   jquery-rails
+  jquery-turbolinks
+  masonry-rails (~> 0.2.0)
   paperclip (~> 3.0)
   pg
   rails (= 4.0.2)
