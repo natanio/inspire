@@ -10,7 +10,7 @@
           <div class="panel-body">
             <%= book.preview %>
             <br>
-            <% if book.user == current_user %>
+            <% if current_user && book.user == current_user %>
             <div style="margin: 10px" class="center">
               <%= link_to edit_book_path(book) do %>
               <span class="glyphicon glyphicon-pencil"></span>
