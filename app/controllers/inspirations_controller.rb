@@ -1,5 +1,7 @@
 class InspirationsController < ApplicationController
   before_action :set_inspiration, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /inspirations
   # GET /inspirations.json
@@ -66,6 +68,11 @@ class InspirationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_inspiration
       @inspiration = Inspiration.find(params[:id])
+    end
+
+    def correct_user
+      @inspiration = current_user.inspirations.find_by(id: params[:id])
+      redirect_to books_path, alert: "Sorry. This isn't yours." if @book.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
