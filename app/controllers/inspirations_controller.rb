@@ -29,11 +29,11 @@ class InspirationsController < ApplicationController
   def create
     @inspiration = Inspiration.new(inspiration_params)
     @inspiration.user_id = current_user.id
-    @inspiration.book_id = @book_id
+    @inspiration.book_id = @book.id
 
     respond_to do |format|
       if @inspiration.save
-        format.html { redirect_to @inspiration, notice: 'Inspiration was successfully created.' }
+        format.html { redirect_to @book, notice: 'Inspiration was successfully created.' }
         format.json { render action: 'show', status: :created, location: @inspiration }
       else
         format.html { render action: 'new' }
@@ -47,7 +47,7 @@ class InspirationsController < ApplicationController
   def update
     respond_to do |format|
       if @inspiration.update(inspiration_params)
-        format.html { redirect_to @inspiration, notice: 'Inspiration was successfully updated.' }
+        format.html { redirect_to @book, notice: 'Inspiration was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -78,7 +78,7 @@ class InspirationsController < ApplicationController
 
     def correct_user
       @inspiration = current_user.inspirations.find_by(id: params[:id])
-      redirect_to books_path, alert: "Sorry. This isn't yours." if @book.nil?
+      redirect_to books_path, alert: "Sorry. This isn't yours." if @inspiration.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140903051447) do
+ActiveRecord::Schema.define(version: 20140903060142) do
 
   create_table "books", force: true do |t|
     t.string   "title"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20140903051447) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "book_id"
   end
 
   add_index "inspirations", ["quote"], name: "index_inspirations_on_quote", unique: true

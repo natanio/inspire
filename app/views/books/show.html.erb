@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= link_to "Add an inspiration", new_book_inspiration_path(@book), class:"btn btn-primary btn-lg" %>
+
 <%= image_tag @book.image.url(:medium) %>
 
 <p>
