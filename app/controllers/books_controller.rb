@@ -2,6 +2,8 @@ require "html_truncator"
 
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /books
   # GET /books.json
@@ -70,6 +72,11 @@ class BooksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params[:id])
+    end
+
+    def correct_user
+      @book = current_user.books.find_by(id: params[:id])
+      redirect_to books_path, notice: "Not authorized to edit this book" if @book.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

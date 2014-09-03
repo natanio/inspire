@@ -3,17 +3,26 @@
   <%= link_to 'New Book', new_book_path %>
 
     <div id="books" class="transitions-enabled">
-  <% @books.each do |book| %>
-    <div class="box panel panel-default">
-      <%= image_tag book.image.url(:medium) %>
-      <div class="panel-body">
-        <%= book.preview %>
-        <%= link_to 'Show', book_path(book) %>
-        <% if book.user == current_user %>
-          <%= link_to 'Edit', edit_book_path(book) %>
-          <%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %>
-      </div>
+      <% @books.each do |book| %>
+        <div class="box panel panel-default">
+          <a href="<%= book_path(book) %>">
+          <%= image_tag book.image.url(:medium) %></a>
+          <div class="panel-body">
+            <%= book.preview %>
+            <br>
+            <% if book.user == current_user %>
+            <div style="margin: 10px" class="center">
+              <%= link_to edit_book_path(book) do %>
+              <span class="glyphicon glyphicon-pencil"></span>
+              <span style="padding-right:8px">Edit</span>
+              <% end %>
+              <%= link_to book, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <span class="glyphicon glyphicon-trash"></span>
+              Delete
+              <% end %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
