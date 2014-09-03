@@ -1,18 +1,19 @@
 <%= render 'pages/home' %>
 
-<div class="container-fluid">
-  <h1>Listing books</h1>
-    <% @books.each do |book| %>
-      <%= image_tag book.image.url(:medium) %>
-      <%= book.title %>
-      <%= book.link %>
-      <%= book.genre %>
-      <%= book.preview %>
-      <%= link_to 'Show', book %>
-      <%= link_to 'Edit', edit_book_path(book) %>
-      <%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-  <br>
-
   <%= link_to 'New Book', new_book_path %>
-</div><!-- end container -->
+
+    <div id="books" class="transitions-enabled">
+  <% @books.each do |book| %>
+    <div class="box panel panel-default">
+      <%= image_tag book.image.url(:medium) %>
+      <div class="panel-body">
+        <%= book.preview %>
+        <%= link_to 'Show', book_path(book) %>
+        <% if book.user == current_user %>
+          <%= link_to 'Edit', edit_book_path(book) %>
+          <%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
