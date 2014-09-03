@@ -1,3 +1,5 @@
+require "html_truncator"
+
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
@@ -15,6 +17,7 @@ class BooksController < ApplicationController
   # GET /books/new
   def new
     @book = Book.new
+    @book.preview = HTML_Truncator.truncate(@book.description, 20)
   end
 
   # GET /books/1/edit
@@ -40,6 +43,8 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
+    @book.preview = HTML_Truncator.truncate(@book.description, 20)
+
     respond_to do |format|
       if @book.update(book_params)
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }
