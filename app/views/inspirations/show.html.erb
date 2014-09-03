@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Quote:</strong>
+  <%= @inspiration.quote %>
+</p>
+
+<p>
+  <strong>Page number:</strong>
+  <%= @inspiration.page_number %>
+</p>
+
+<p>
+  <strong>Likes:</strong>
+  <%= @inspiration.likes %>
+</p>
+
+<%= link_to 'Edit', edit_inspiration_path(@inspiration) %> |
+<%= link_to 'Back', inspirations_path %>
