@@ -13,6 +13,7 @@ class InspirationsController < ApplicationController
   # GET /inspirations/1
   # GET /inspirations/1.json
   def show
+    @comments = Comment.where(inspiration_id: @inspiration.id)
   end
 
   # GET /inspirations/new
