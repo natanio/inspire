@@ -1,38 +1,54 @@
-<%= render 'layouts/inspiration_button' %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <%= image_tag @book.image.url(:medium) %>
+      <br>
 
-<%= image_tag @book.image.url(:medium) %>
-
-  <div id="inspirations" class="transitions-enabled">
-      <%= @inspirations.each do |inspiration| %>
-        <div class="box panel panel-default">
-          <a href="<%= book_inspiration_path(@book, inspiration) %>">
-          <div class="panel-body">
-            <%= inspiration.quote %>
-            <br>
-            <%= link_to book_inspiration_comments_path(@book, inspiration) do %>
-              <% if comment_number == 1 %>
-                <%= comment_number %> Comment
-              <% else %>
-                <%= comment_number %> Comments
-              <% end %>
+      <div class="new-inspiration">
+      <%= link_to new_book_inspiration_path(@book), class:"btn btn-primary btn-lg" do %>
+              <span class="glyphicon glyphicon-plus"></span> Add an inspiration
             <% end %>
-            <% if current_user && inspiration.user == current_user %>
-              <div style="margin: 10px" class="center">
-              <%= link_to edit_book_inspiration_path(@book.id, inspiration) do %>
-              <span class="glyphicon glyphicon-pencil"></span>
-              <span style="padding-right:8px">Edit</span>
-              <% end %>
-              <%= link_to book_inspirations_path(@book.id), method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <span class="glyphicon glyphicon-trash"></span>
-              Delete
-              <% end %>
-            </div>
-            <% end %>
-          </div>
-          <a>
-        </div>
-      <% end %>
+      </div>
+      <%= link_to 'Edit', edit_book_path(@book) %> |
+      <%= link_to 'Back', books_path %>
     </div>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+    <div class="col-sm-10 col-md-10 col-lg-10">
+      <div id="inspirations" class="transitions-enabled">
+          <%= @inspirations.each do |inspiration| %>
+              <div class="box panel panel-default">
+              <div class="panel-body">
+                <div class="pull-right">
+                <%= link_to book_inspiration_path(@book, inspiration) do %>
+                <span class="glyphicon glyphicon-resize-full"></span>
+                <% end %>
+                </div>
+                <%= inspiration.quote %>
+                <br>
+                <%= link_to book_inspiration_path(@book, inspiration) do %>
+                  <% if comment_number == 1 %>
+                    <%= comment_number %> Comment
+                  <% else %>
+                    <%= comment_number %> Comments
+                  <% end %>
+                <% end %>
+                <% if current_user && inspiration.user == current_user %>
+                  <div style="margin: 10px" class="center">
+                  <%= link_to edit_book_inspiration_path(@book.id, inspiration) do %>
+                  <span class="glyphicon glyphicon-pencil"></span>
+                  <span style="padding-right:8px">Edit</span>
+                  <% end %>
+                  <%= link_to book_inspirations_path(@book.id), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <span class="glyphicon glyphicon-trash"></span>
+                  Delete
+                  <% end %>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+  </div><!-- end the row-->
+</div>
+<br>
