@@ -18,9 +18,9 @@
         <td><%= comment.content %></td>
         <td><%= comment.user_id %></td>
         <td><%= comment.inspiration_id %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', book_inspiration_comment_path(@book, @inspiration, comment) %></td>
+        <td><%= link_to 'Edit', edit_book_inspiration_comment_path(@book, @inspiration, comment) %></td>
+        <td><%= link_to 'Destroy', book_inspiration_comment_path(@book, @inspiration, comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Comment', new_comment_path %>
+<%= link_to 'New Comment', new_book_inspiration_comment_path(@book, @inspiration) %>

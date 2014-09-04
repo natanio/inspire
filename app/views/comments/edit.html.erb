@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @comment %> |
-<%= link_to 'Back', comments_path %>
+<%= link_to 'Show', book_inspiration_comment_path(@book, @inspiration,@comment) %> |
+<%= link_to 'Back', book_inspiration_comments_path(@book, @inspiration) %>

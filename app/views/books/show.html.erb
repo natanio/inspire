@@ -5,9 +5,17 @@
   <div id="inspirations" class="transitions-enabled">
       <%= @inspirations.each do |inspiration| %>
         <div class="box panel panel-default">
+          <a href="<%= book_inspiration_path(@book, inspiration) %>">
           <div class="panel-body">
             <%= inspiration.quote %>
             <br>
+            <%= link_to book_inspiration_comments_path(@book, inspiration) do %>
+              <% if comment_number == 1 %>
+                <%= comment_number %> Comment
+              <% else %>
+                <%= comment_number %> Comments
+              <% end %>
+            <% end %>
             <% if current_user && inspiration.user == current_user %>
               <div style="margin: 10px" class="center">
               <%= link_to edit_book_inspiration_path(@book.id, inspiration) do %>
@@ -21,6 +29,7 @@
             </div>
             <% end %>
           </div>
+          <a>
         </div>
       <% end %>
     </div>
