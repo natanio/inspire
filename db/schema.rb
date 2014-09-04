@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904003113) do
+ActiveRecord::Schema.define(version: 20140904010139) do
 
   create_table "books", force: true do |t|
     t.string   "title"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(version: 20140904003113) do
   end
 
   add_index "books", ["user_id"], name: "index_books_on_user_id"
+
+  create_table "comments", force: true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "inspiration_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "inspirations", force: true do |t|
     t.text     "quote",       limit: 500
