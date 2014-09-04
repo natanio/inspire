@@ -18,7 +18,7 @@
         <td><%= inspiration.quote %></td>
         <td><%= inspiration.page_number %></td>
         <td><%= inspiration.likes %></td>
-        <td><%= link_to 'Show', inspiration %></td>
+        <td><%= link_to 'Show', book_inspiration_path %></td>
         <td><%= link_to 'Edit', edit_inspiration_path(inspiration) %></td>
         <td><%= link_to 'Destroy', inspiration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

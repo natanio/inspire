@@ -1,13 +1,13 @@
 Inspire::Application.routes.draw do
 
-  resources :comments
-
   devise_for :users
   get "pages/home"
   get "about" => "pages#about"
   get "contact" => "pages#contact"
   resources :books do
-    resources :inspirations
+    resources :inspirations do
+      resources :comments
+    end
   end
 
   root "books#index"

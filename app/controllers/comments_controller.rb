@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_book
+  before_action :set_inspiration
   before_action :authenticate_user!
 
   # GET /comments
@@ -27,6 +29,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
+    @comment.inspiration_id = @inspiration.id
 
     respond_to do |format|
       if @comment.save
@@ -67,6 +70,14 @@ class CommentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])
+    end
+
+    def set_book
+      @book = Book.find(params[:book_id])
+    end
+
+    def set_inspiration
+      @inspiration = Inspiration.find(params[:inspiration_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
