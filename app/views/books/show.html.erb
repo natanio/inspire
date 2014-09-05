@@ -50,6 +50,15 @@
           <% end %>
         </div>
       </div>
+
+    <!-- For seeing a grid that is flush <div class="col-sm-10 col-md-10 col-lg-10">
+      <ul class="cbp-rfgrid">
+        <% @inspirations.each do |inspiration| %>
+        <li><a href="<%= book_inspiration_path(@book, inspiration) %>"><img src="http://www.lovethispic.com/uploaded_images/44844-Cute-Cat.png" /><div><h4><%= inspiration.quote %></h4></div></a></li>
+        <% end %>
+      </ul>
+    </div> -->
+    
   </div><!-- end the row-->
 </div>
 <br>
