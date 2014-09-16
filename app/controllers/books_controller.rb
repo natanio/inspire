@@ -1,4 +1,5 @@
 require "html_truncator"
+require 'amazon/aws/search'
 
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
@@ -9,7 +10,7 @@ class BooksController < ApplicationController
     if params[:search].present?
       @books = Book.search(params[:search], fields: [{title: :exact}])
       if @books.empty?
-        redirect_to root_path
+        is = ItemSearch.new( 'Books', { 'Title' => params[:search] } )
       end
     else
       @books = Book.all
