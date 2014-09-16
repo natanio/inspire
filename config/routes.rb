@@ -5,6 +5,9 @@ Inspire::Application.routes.draw do
   get "about" => "pages#about"
   get "contact" => "pages#contact"
   resources :books do
+    collection do
+      get 'search'
+    end
     resources :inspirations do
       resources :comments
     end

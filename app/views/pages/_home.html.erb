@@ -3,11 +3,11 @@
 	<p class="lead">a fun new way to share and discover inspirations from books we love</p>
 
 	<div class="new-inspiration" style="max-width: 600px">
-		<form role="search">
-	        <div class="form-group">
-	          <input type="text" class="form-control" placeholder="Book title">
-	        </div>
-	        <button type="submit" class="btn btn-default">Submit</button>
-	     </form>
+		<%= form_tag search_books_path, method: :get, class: "form-group" do %>
+			<p>
+				<%= text_field_tag :search, params[:search], class: "form-control" %>
+				<%= submit_tag "Search", name: nil, class: "btn btn-default" %>
+			</p>
+		<% end %>
   </div>
 </div>

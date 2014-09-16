@@ -19,6 +19,7 @@ gem 'aws-sdk', '~> 1.53.0'
 gem 'ruby-aaws', '~> 0.7.0'
 gem 'masonry-rails', '~> 0.2.0'
 gem "html_truncator", "~>0.2"
+gem 'searchkick'
 
 group :development, :test do
      gem 'sqlite3'
