@@ -7,7 +7,10 @@ class BooksController < ApplicationController
 
   def search
     if params[:search].present?
-      @books = Book.search(params[:search])
+      @books = Book.search(params[:search], fields: [{title: :exact}])
+      if @books.empty?
+        redirect_to root_path
+      end
     else
       @books = Book.all
     end
