@@ -6,6 +6,42 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    var cbpAnimatedHeader = (function() {
+ 
+    var docElem = document.documentElement,
+        header = document.querySelector( '.af-header' ),
+        didScroll = false,
+        changeHeaderOn = 300;
+ 
+    function init() {
+        window.addEventListener( 'scroll', function( event ) {
+            if( !didScroll ) {
+                didScroll = true;
+                setTimeout( scrollPage, 250 );
+            }
+        }, false );
+    }
+ 
+    function scrollPage() {
+        var sy = scrollY();
+        if ( sy >= changeHeaderOn ) {
+            classie.add( header, 'af-header-shrink' );
+        }
+        else {
+            classie.remove( header, 'af-header-shrink' );
+        }
+        didScroll = false;
+    }
+ 
+    function scrollY() {
+        return window.pageYOffset || docElem.scrollTop;
+    }
+ 
+    init();
+ 
+})();
+  </script>
 </head>
 <body>
 <%= render 'layouts/header' unless @disable_nav %>
