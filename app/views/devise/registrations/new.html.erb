@@ -1,7 +1,7 @@
 <div class="signup">
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :class => "user-form" }) do |f| %>
   <%= devise_error_messages! %>
 
   <p class="float">
@@ -23,10 +23,13 @@
     <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Confirm your password" %>
   </p>
 
-  <p class="clearfix">
-  	<%= f.submit "Sign up" %>
-  </p>
+  <div class="user-submit-wrap">
+    <p class="clearfix">
+    	<%= f.submit "Sign up", class: "user-submit" %>
+    </p>
+    <%= render "devise/shared/links" %>
+  </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+
 </div>
