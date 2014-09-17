@@ -23,8 +23,8 @@ class BooksController < ApplicationController
 
 
         # Perform the Search
-        req = Request.new('access_key', 'yourassociateid-20', 'us', false)
-        req.config['secret_key_id'] = 'secret_key'
+        req = Request.new('access-key', 'inspirati0caf-20', 'us', false)
+        req.config['secret_key_id'] = 'secret-key'
 
         resp = req.search( is, rg )
 
@@ -34,9 +34,12 @@ class BooksController < ApplicationController
           title = i.item_attributes.title[0].to_s[0,60]
           group = i.item_attributes.product_group.to_s
           image = amazon_image_set(i.image_sets[0].image_set)
+          pub_date = i.item_attributes.publication_date.to_s
+          genre = i.item_attributes.genre
+
 
           # Add to results array
-          results << { :title => title, :group => group, :image => image }
+          results << { :title => title, :group => group, :image => image, :publication_date => pub_date, :genre => genre }
         end
 
         # Return results 0-5 as JSON
@@ -139,7 +142,7 @@ class BooksController < ApplicationController
     # Returns the thumbnail_image url or ""
     # Instead of thumbnail_image, could be small_image, large_image
     def amazon_image_set(set)
-      set[0].thumbnail_image.url.to_s
+      set[0].large_image.url.to_s
       rescue
        ""
     end
