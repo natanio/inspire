@@ -20,6 +20,8 @@ gem 'ruby-aaws', '~> 0.7.0'
 gem 'masonry-rails', '~> 0.2.0'
 gem "html_truncator", "~>0.2"
 gem 'searchkick'
+gem 'better_errors'
+gem 'binding_of_caller'
 
 group :development, :test do
      gem 'sqlite3'

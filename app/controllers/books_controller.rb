@@ -6,18 +6,52 @@ class BooksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :search]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
+  #include amazon helpers
+  include Amazon::AWS
+  include Amazon::AWS::Search
+
   def search
     if params[:search].present?
       @books = Book.search(params[:search], fields: [{title: :exact}])
+
       if @books.empty?
         is = ItemSearch.new( 'Books', { 'Title' => params[:search] })
-        is.response_group = ResponseGroup.new(:Large)
 
-        req = Request.new('aws key', 'yourassociateid-20', 'us', false)
-        req.config['secret_key_id'] = 'aws secret key'
+        # 'Large' required for images 
+        # Could also be 'Small'' for just title & product group
+        rg = ResponseGroup.new(:Large)
+
+
+        # Perform the Search
+        req = Request.new('access_key', 'yourassociateid-20', 'us', false)
+        req.config['secret_key_id'] = 'secret_key'
+
+        resp = req.search( is, rg )
+
+        results = []
+        resp["item_search_response"][0].items[0].item.each do |i|
+          # Grab the attributes we want
+          title = i.item_attributes.title[0].to_s[0,60]
+          group = i.item_attributes.product_group.to_s
+          image = amazon_image_set(i.image_sets[0].image_set)
+
+          # Add to results array
+          results << { :title => title, :group => group, :image => image }
+        end
+
+        # Return results 0-5 as JSON
+        render :json => results[0..100]
+
+        # If no results, Amazon::AWS throws an error, so we can rescue
+        # TODO There's definitely a better way to handle this
+        #rescue 
+        #  render :json => ["None"]
+        #end
       end
+
     else
-      @books = Book.all
+      flash[:alert] = "Be sure to enter a keyword in your search."
+      redirect_to root_path
     end
   end
 
@@ -99,5 +133,14 @@ class BooksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
       params.require(:book).permit(:title, :link, :genre, :image, :description, :date_publish, :preview, :user_id)
+    end
+
+    # Helper function, only argument is an image_set
+    # Returns the thumbnail_image url or ""
+    # Instead of thumbnail_image, could be small_image, large_image
+    def amazon_image_set(set)
+      set[0].thumbnail_image.url.to_s
+      rescue
+       ""
     end
 end
