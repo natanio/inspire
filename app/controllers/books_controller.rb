@@ -10,7 +10,11 @@ class BooksController < ApplicationController
     if params[:search].present?
       @books = Book.search(params[:search], fields: [{title: :exact}])
       if @books.empty?
-        is = ItemSearch.new( 'Books', { 'Title' => params[:search] } )
+        is = ItemSearch.new( 'Books', { 'Title' => params[:search] })
+        is.response_group = ResponseGroup.new(:Large)
+
+        req = Request.new('aws key', 'yourassociateid-20', 'us', false)
+        req.config['secret_key_id'] = 'aws secret key'
       end
     else
       @books = Book.all
