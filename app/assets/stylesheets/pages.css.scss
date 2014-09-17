@@ -8,6 +8,17 @@
     box-sizing: border-box;
 }
 
+.new-inspiration .btn {
+    width: 100%;
+    background: #101010;
+    color: white;
+    border: none;
+}
+
+.new-inspiration .btn:hover {
+    background: #464646;
+}
+
 .signup {
     /* Size and position */
     width: 50%;
