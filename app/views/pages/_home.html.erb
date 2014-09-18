@@ -6,7 +6,7 @@
 		<div class="row">
 		<%= form_tag search_books_path, method: :get, class: "form-group" do %>
 			<div class="col-md-9">
-				<%= text_field_tag :search, params[:search], class: "form-control" %>
+				<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Enter a book title" %>
 			</div>
 			<div class="col-md-3">
 				<%= submit_tag "Search", name: nil, class: "btn btn-default" %>

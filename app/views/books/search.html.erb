@@ -1,4 +1,5 @@
 <% unless @books.empty? %>
+<h2 class="featurette-title center">Search Results</h2>
 <div id="books" class="transitions-enabled">
       <% @books.each do |book| %>
         <div class="box panel panel-default">
@@ -25,13 +26,15 @@
     </div>
 
 <% else %>
+<h2 class="featurette-title center">Search Results</h2>
 <div id="books" class="transitions-enabled">
       <% @results.each do |book| %>
         <div class="box panel panel-default">
-          <a href="#">
-          <img src="<%= book[:image] %>"></a>
+          <img src="<%= book[:image] %>">
           <div class="panel-body">
-            <%= book[:title] %>
+            <%= book[:title] %><br>
+            <%= link_to "View", :controller => 
+        :books, :action => :create, :method => :post, :class => "btn btn-primary" %>
           </div>
         </div>
       <% end %>

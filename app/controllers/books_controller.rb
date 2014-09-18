@@ -23,8 +23,8 @@ class BooksController < ApplicationController
 
 
         # Perform the Search
-        req = Request.new('access_key', 'inspirati0caf-20', 'us', false)
-        req.config['secret_key_id'] = 'secret_key'
+        req = Request.new('accesskey', 'inspirati0caf-20', 'us', false)
+        req.config['secret_key_id'] = 'secretkey'
 
         resp = req.search( is, rg )
 
