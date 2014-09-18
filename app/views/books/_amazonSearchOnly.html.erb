@@ -1,0 +1,16 @@
+  <div class="container">
+    <h2 class="featurette-title center">Search Results</h2>
+    <p class="lead center">Please add a new book.</p>
+    <div id="books2" class="transitions-enabled">
+          <% @results.each do |book| %>
+            <div class="box panel panel-default">
+              <img src="<%= book[:image] %>">
+              <div class="panel-body">
+                <%= book[:title] %><br>
+                <%= link_to "View", :controller => 
+            :books, :action => :create, :method => :post, :class => "btn btn-primary" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    </div>

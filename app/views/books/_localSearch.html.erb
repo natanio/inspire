@@ -1,0 +1,28 @@
+<div class="container">
+<h2 class="featurette-title center">Search Results</h2>
+<p class="lead center">Books that have already been added.</p>
+<div id="books" class="transitions-enabled">
+      <% @books.each do |book| %>
+        <div class="box panel panel-default">
+          <a href="<%= book_path(book) %>">
+          <%= image_tag book.image.url(:medium) %></a>
+          <div class="panel-body">
+            <%= book.preview %>
+            <br>
+            <% if current_user && book.user == current_user %>
+            <div style="margin: 10px" class="center">
+              <%= link_to edit_book_path(book) do %>
+              <span class="glyphicon glyphicon-pencil"></span>
+              <span style="padding-right:8px">Edit</span>
+              <% end %>
+              <%= link_to book, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <span class="glyphicon glyphicon-trash"></span>
+              Delete
+              <% end %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
