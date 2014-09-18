@@ -12,9 +12,8 @@ class BooksController < ApplicationController
 
   def search
     if params[:search].present?
-      @books = Book.search(params[:search], fields: [{title: :exact}])
+      @books = Book.search(params[:search], fields: [:title])
 
-      if @books.empty?
         is = ItemSearch.new( 'Books', { 'Title' => params[:search] })
 
         # 'Large' required for images 
@@ -50,7 +49,6 @@ class BooksController < ApplicationController
         #rescue 
         #  render :json => ["None"]
         #end
-      end
 
     else
       flash[:alert] = "Be sure to enter a keyword in your search."

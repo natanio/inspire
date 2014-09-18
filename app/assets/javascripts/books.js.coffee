@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-	$('#books').imagesLoaded ->
-		$('#books').masonry
+	$('#books, #books2').imagesLoaded ->
+		$('#books, #books2').masonry
 			itemSelector: '.box'
 			isFitWidth: true
