@@ -23,12 +23,12 @@ class BooksController < ApplicationController
 
 
         # Perform the Search
-        req = Request.new('access-key', 'inspirati0caf-20', 'us', false)
-        req.config['secret_key_id'] = 'secret-key'
+        req = Request.new('access_key', 'inspirati0caf-20', 'us', false)
+        req.config['secret_key_id'] = 'secret_key'
 
         resp = req.search( is, rg )
 
-        results = []
+        @results = []
         resp["item_search_response"][0].items[0].item.each do |i|
           # Grab the attributes we want
           title = i.item_attributes.title[0].to_s[0,60]
@@ -39,11 +39,11 @@ class BooksController < ApplicationController
 
 
           # Add to results array
-          results << { :title => title, :group => group, :image => image, :publication_date => pub_date, :genre => genre }
+          @results << { :title => title, :group => group, :image => image, :publication_date => pub_date, :genre => genre }
         end
 
-        # Return results 0-5 as JSON
-        render :json => results[0..100]
+        # Return results 0-100 as JSON
+        #render :json => results[0..100]
 
         # If no results, Amazon::AWS throws an error, so we can rescue
         # TODO There's definitely a better way to handle this

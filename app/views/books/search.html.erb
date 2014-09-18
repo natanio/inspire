@@ -1,3 +1,4 @@
+<% unless @books.empty? %>
 <div id="books" class="transitions-enabled">
       <% @books.each do |book| %>
         <div class="box panel panel-default">
@@ -22,3 +23,17 @@
         </div>
       <% end %>
     </div>
+
+<% else %>
+<div id="books" class="transitions-enabled">
+      <% @results.each do |book| %>
+        <div class="box panel panel-default">
+          <a href="#">
+          <img src="<%= book[:image] %>"></a>
+          <div class="panel-body">
+            <%= book[:title] %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+<% end %>
