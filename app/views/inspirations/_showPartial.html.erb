@@ -1,0 +1,30 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-7 inspiration">
+			<p class="inspiration-text">
+			  <%= @inspiration.quote %><br>
+			  <div class="pull-right">
+			<p class="inspiration-credit">- <%= link_to @book.title, @book.link %></p>
+			<p class="inspiration-credit">pg. <%= inspiration.page_number %></p>				
+			</div>
+			</p>
+
+			<%= link_to 'Edit', edit_book_inspiration_path(@book, inspiration) %> |
+			<%= link_to 'Back', book_path(@book) %>
+		</div>
+
+		<div class="col-md-4">
+			<div class="comment-container">
+				<% @comments.each do |comment| %>
+				<div class="comment">
+				 <%= comment.content %><br>
+				 <%= link_to 'Edit', edit_book_inspiration_comment_path(@book, inspiration, comment) %> |
+	        	 <%= link_to 'Delete', book_inspiration_comment_path(@book, inspiration, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+	        	</div>
+	        </div>
+        	 <% end %>
+        	
+        	 <%= link_to 'New Comment', new_book_inspiration_comment_path(@book, inspiration), class:"btn btn-primary" %>
+		</div>
+	</div>
+</div>

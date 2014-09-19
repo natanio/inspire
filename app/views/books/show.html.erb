@@ -17,7 +17,7 @@
     <div class="col-sm-10 col-md-10 col-lg-10">
       <div id="inspirations" class="transitions-enabled">
           <% @inspirations.each do |inspiration| %>
-              <div class="box panel panel-default" onclick="location.href='<%= book_inspiration_path(@book, inspiration) %>';" style="cursor: pointer;">
+              <div class="box panel panel-default" style="cursor: pointer;" data-toggle="modal" data-target="#modal<%= inspiration.id %>">
               <div class="panel-body">
                 <%= inspiration.quote %>
                 <br>
@@ -37,9 +37,24 @@
                   <%= link_to book_inspirations_path(@book.id), method: :delete, data: { confirm: 'Are you sure?' } do %>
                   <span class="glyphicon glyphicon-trash"></span>
                   Delete
-                  <% end %>
-                </div>
                 <% end %>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="modal<%= inspiration.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                      </div>
+                      <div class="modal-body">
+                        <!-- Add render inspiration/showPartial, but cannot set comments-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              <% end %>
               </div>
             </div>
           <% end %>
