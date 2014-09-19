@@ -1,4 +1,4 @@
-<%= form_for([@book, @inspiration]) do |f| %>
+<%= form_for([@book, @inspiration], :html => { :class => "user-form" }) do |f| %>
   <% if @inspiration.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@inspiration.errors.count, "error") %> prohibited this inspiration from being saved:</h2>
@@ -23,7 +23,10 @@
     <%= f.label :likes %><br>
     <%= f.number_field :likes %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+   <div class="user-submit-wrap">
+    <p class="clearfix">
+    <%= f.submit class: "user-submit" %>
+  </p>
   </div>
 <% end %>
