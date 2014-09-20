@@ -7,6 +7,7 @@ Inspire::Application.routes.draw do
   resources :books do
     collection do
       get 'search'
+      post 'load_from_amazon'
     end
     resources :inspirations do
       resources :comments

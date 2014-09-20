@@ -23,22 +23,30 @@ class BooksController < ApplicationController
 
         # Perform the Search
         req = Request.new('accesskey', 'inspirati0caf-20', 'us', false)
-        req.config['secret_key_id'] = 'secretkey'
+        req.config['secret_key_id'] = 'accesssecret'
 
         resp = req.search( is, rg )
 
         @results = []
         resp["item_search_response"][0].items[0].item.each do |i|
-          # Grab the attributes we want
+        # Grab the attributes we want
           title = i.item_attributes.title[0].to_s[0,60]
           group = i.item_attributes.product_group.to_s
           image = amazon_image_set(i.image_sets[0].image_set)
           pub_date = i.item_attributes.publication_date.to_s
           genre = i.item_attributes.genre
+          isbn = i.item_attributes.isbn.to_s
 
+          book = Book.find_or_create_by(isbn: isbn) do |book|
+            book.title = title
+            book.genre = genre
+            book.date_publish = pub_date
+
+          book.save!
+          end
 
           # Add to results array
-          @results << { :title => title, :group => group, :image => image, :publication_date => pub_date, :genre => genre }
+          @results << { :title => title, :group => group, :image => image, :publication_date => pub_date, :genre => genre, :isbn => isbn }
         end
 
         # Return results 0-100 as JSON
@@ -118,6 +126,42 @@ class BooksController < ApplicationController
       format.html { redirect_to books_url }
       format.json { head :no_content }
     end
+  end
+
+  def load_from_amazon
+    isbn = params[:isbn]
+
+    is = ItemLookup.new( 'ISBN', { 'ItemId' => isbn, 'SearchIndex' => 'Books'})
+
+        # 'Large' required for images 
+        # Could also be 'Small'' for just title & product group
+        rg = ResponseGroup.new(:Large,:ItemAttributes)
+
+
+        # Perform the Search
+        req = Request.new('accesskey', 'inspirati0caf-20', 'us', false)
+        req.config['secret_key_id'] = 'accesssecret'
+
+        resp = req.search( is, rg )
+
+        @results = []
+        amazon_book = resp["item_lookup_response"][0].items[0].item.first
+        # Grab the attributes we want
+        title = amazon_book.item_attributes.title[0].to_s[0,60]
+        group = amazon_book.item_attributes.product_group.to_s
+        image = amazon_image_set(amazon_book.image_sets[0].image_set)
+        pub_date = amazon_book.item_attributes.publication_date.to_s
+        genre = amazon_book.item_attributes.genre
+        isbn = amazon_book.item_attributes.isbn.to_s
+
+          book = Book.find_or_create_by(isbn: isbn) do |book|
+            book.title = title
+            book.genre = genre
+            book.date_publish = pub_date
+
+          book.save!
+          end
+          redirect_to book, notice: 'Book was successfully added.'
   end
 
   private
