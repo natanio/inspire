@@ -7,7 +7,7 @@
       <% @books.each do |book| %>
         <div class="box panel panel-default">
           <a href="<%= book_path(book) %>">
-          <%= image_tag book.image.url(:medium) %></a>
+          <%= image_tag book.aws_image_url %></a>
           <div class="panel-body">
             <%= book.preview %>
             <br>

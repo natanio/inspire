@@ -23,7 +23,7 @@ class BooksController < ApplicationController
 
         # Perform the Search
         req = Request.new('accesskey', 'inspirati0caf-20', 'us', false)
-        req.config['secret_key_id'] = 'accesssecret'
+        req.config['secret_key_id'] = 'secretkey'
 
         resp = req.search( is, rg )
 
@@ -37,14 +37,6 @@ class BooksController < ApplicationController
           genre = i.item_attributes.genre
           isbn = i.item_attributes.isbn.to_s
 
-          book = Book.find_or_create_by(isbn: isbn) do |book|
-            book.title = title
-            book.genre = genre
-            book.date_publish = pub_date
-
-          book.save!
-          end
-
           # Add to results array
           @results << { :title => title, :group => group, :image => image, :publication_date => pub_date, :genre => genre, :isbn => isbn }
         end
@@ -54,9 +46,9 @@ class BooksController < ApplicationController
 
         # If no results, Amazon::AWS throws an error, so we can rescue
         # TODO There's definitely a better way to handle this
-        #rescue 
-        #  render :json => ["None"]
-        #end
+        # rescue 
+        # render :json => ["None"]
+        # end
 
     else
       flash[:alert] = "Be sure to enter a keyword in your search."
@@ -140,7 +132,7 @@ class BooksController < ApplicationController
 
         # Perform the Search
         req = Request.new('accesskey', 'inspirati0caf-20', 'us', false)
-        req.config['secret_key_id'] = 'accesssecret'
+        req.config['secret_key_id'] = 'secretkey'
 
         resp = req.search( is, rg )
 
@@ -158,6 +150,7 @@ class BooksController < ApplicationController
             book.title = title
             book.genre = genre
             book.date_publish = pub_date
+            book.aws_image_url = image
 
           book.save!
           end

@@ -7,8 +7,7 @@
               <img src="<%= book[:image] %>">
               <div class="panel-body">
                 <%= book[:title] %><br>
-                <%= link_to "View", :controller => 
-            :books, :action => :create, :method => :post, :class => "btn btn-primary" %>
+                <%= link_to "Add this book", load_from_amazon_books_path(isbn: book[:isbn]), method: "POST", :class => "btn btn-primary" %>
               </div>
             </div>
           <% end %>
