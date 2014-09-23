@@ -1,5 +1,9 @@
 class AddImageUrlToBooks < ActiveRecord::Migration
   def change
-    add_column :books, :aws_image_url, :string
+    add_column :users, :admin, :boolean, :default => false
+  end
+
+  def self.down
+    remove_column :users, :admin
   end
 end
