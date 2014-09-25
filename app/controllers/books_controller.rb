@@ -14,7 +14,8 @@ class BooksController < ApplicationController
     if params[:search].present?
       @books = Book.search(params[:search], fields: [:title])
 
-        is = ItemSearch.new( 'Books', { 'Title' => params[:search] })
+        is = ItemSearch.new( 'Books', { 'Title' => params[:search],
+                                        'MerchantId' => 'Amazon' })
 
         # 'Large' required for images 
         # Could also be 'Small'' for just title & product group
@@ -36,9 +37,10 @@ class BooksController < ApplicationController
           pub_date = i.item_attributes.publication_date.to_s
           genre = i.item_attributes.genre
           isbn = i.item_attributes.isbn.to_s
+          url = i.detail_page_url
 
           # Add to results array
-          @results << { :title => title, :group => group, :image => image, :publication_date => pub_date, :genre => genre, :isbn => isbn }
+          @results << { :title => title, :group => group, :image => image, :publication_date => pub_date, :genre => genre, :isbn => isbn, :detail_page_url => url }
         end
 
         # Return results 0-100 as JSON
@@ -145,12 +147,14 @@ class BooksController < ApplicationController
         pub_date = amazon_book.item_attributes.publication_date.to_s
         genre = amazon_book.item_attributes.genre
         isbn = amazon_book.item_attributes.isbn.to_s
+        url = amazon_book.detail_page_url
 
           book = Book.find_or_create_by(isbn: isbn) do |book|
             book.title = title
             book.genre = genre
             book.date_publish = pub_date
             book.aws_image_url = image
+            book.url = url
 
           book.save!
           end
