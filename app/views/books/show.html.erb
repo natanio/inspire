@@ -52,7 +52,7 @@
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                       </div>
                       <div class="modal-body">
-                        <!-- Add render inspiration/showPartial, but cannot set comments-->
+                        <%= render 'inspirations/showPartial' %>
                       </div>
                     </div>
                   </div>
@@ -75,3 +75,13 @@
     
   </div><!-- end the row-->
 </div>
+<script>
+$(document).ready(function() {
+  var $inspiration_dialog = $('#inspiration-collection').dialog({ 
+    autoOpen: false, 
+    title: 'View',
+    modal: true,
+    draggable: false
+  });
+});
+</script>

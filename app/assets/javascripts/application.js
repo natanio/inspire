@@ -17,3 +17,7 @@
 //= require turbolinks
 //= require masonry/jquery.masonry
 //= require_tree .
+
+$('#modal<%= inspiration.id %>').click(function(){
+    $inspiration_dialog.dialog('open');
+});
