@@ -147,7 +147,7 @@ class BooksController < ApplicationController
         pub_date = amazon_book.item_attributes.publication_date.to_s
         genre = amazon_book.item_attributes.genre
         isbn = amazon_book.item_attributes.isbn.to_s
-        url = amazon_book.detail_page_url
+        url = amazon_book.detail_page_url.to_s
 
           book = Book.find_or_create_by(isbn: isbn) do |book|
             book.title = title
