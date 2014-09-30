@@ -1,0 +1,28 @@
+<div class="box panel panel-default" style="cursor: pointer;" data-toggle="modal" data-target="#inspirationModal">
+  <div class="panel-body" data-inspiration="<%= inspiration.quote %>" data-inspiration-page="<%= inspiration.page_number %>" 
+  data-comments="<%= inspiration.comments.to_json %>">
+  
+    <%= inspiration.quote %>
+    <br>
+ 
+    <%= link_to book_inspiration_path(inspiration.book_id, inspiration) do %>
+	    <%= comment_number %> <%=	"Comment".pluralize(comment_number) %>
+    <% end %>
+ 
+    <div style="margin: 10px" class="center">
+    
+    <% if current_user && inspiration.user == current_user %>
+      <%= link_to edit_book_inspiration_path(inspiration.book_id, inspiration) do %>
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span style="padding-right:8px">Edit</span>
+      <% end %>
+ 
+      <%= link_to book_inspirations_path(inspiration.book_id), method: :delete, data: { confirm: 'Are you sure?' } do %>
+        <span class="glyphicon glyphicon-trash"></span>
+          Delete
+      <% end %>
+    <% end %>
+    
+    </div>
+  </div>
+</div>

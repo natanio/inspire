@@ -1,0 +1,66 @@
+<!-- Modal -->
+<div id="inspirationModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="quoteTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+ 
+    <div class="modal-content">
+ 
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <span>&times;</span><span class="sr-only">Close</span>
+        </button>
+      </div>
+ 
+      <div class="modal-body" id="quoteBody">
+        <div class="container-fluid">
+          <div class="row">
+ 
+            <div class="col-md-7 inspiration">
+              <p id="inspiration-quote"  class="inspiration-text">
+                @inspiration.quote
+              </p>
+ 
+              <div class="pull-right">
+                <p class="inspiration-credit">- <%= link_to @book.title, @book.link, id: 'book-link' %></p>
+                <p class="inspiration-credit">pg. <span id="page_number">0<span></p>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="comment-container">
+                <% @comments.each do |comment| %>
+                  <div class="comment">
+                    <%= comment.content %><br>
+                    <%= link_to 'Edit', edit_book_inspiration_comment_path(@book, @inspiration, comment) %> |
+                    <%= link_to 'Delete', book_inspiration_comment_path(@book, @inspiration, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </div>
+              </div>
+             <% end %>
+          
+              <%= link_to 'New Comment', new_book_inspiration_comment_path(@book, @inspiration), class:"btn btn-primary" %>
+            </div>
+          </div><!-- end the row -->
+        </div><!-- end the container -->
+      </div><!-- end the modal boday -->
+ 
+      <div class="modal-footer">
+ 
+        <div class="col-md-4">
+          <div id="inspiration-comments" class="comment-container">
+            <%# render @book.inspirations.first.comments %>
+          </div>
+ 
+          <%= link_to 'New Comment', new_book_inspiration_comment_path(@book, @book.inspirations.first), :class => "btn btn-primary" %>
+        </div>
+ 
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+ 
+<script>
+  $('.panel-body').click(function(){ 
+    var panel = $(this);
+    $('#inspiration-quote').html( panel.data('inspiration') );
+  });
+</script>

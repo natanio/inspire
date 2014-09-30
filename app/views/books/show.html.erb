@@ -1,70 +1,16 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-2 col-md-2 col-lg-2">
-      <%= link_to( image_tag(@book.aws_image_url, width: "200px"), @book.url, class: "book-image")%>
-      <br>
-
-      <div class="new-inspiration">
-      <%= link_to @book.url, class:"btn btn-success btn-lg" do %>
-              <span class="glyphicon glyphicon-book"></span>  View on Amazon
-            <% end %>
-            <br>
-            <br>
-      <%= link_to new_book_inspiration_path(@book), class:"btn btn-primary btn-lg" do %>
-              <span class="glyphicon glyphicon-plus"></span> Add an inspiration
-            <% end %>      
-      </div>
-      <%= link_to 'Edit', edit_book_path(@book) %> |
-      <%= link_to 'Back', books_path %>
+      <%= render @book %>
     </div>
-
+ 
     <div class="col-sm-10 col-md-10 col-lg-10">
       <div id="inspirations" class="transitions-enabled">
-          <% @inspirations.each do |inspiration| %>
-              <div class="box panel panel-default" style="cursor: pointer;" data-toggle="modal" data-target="#modal<%= inspiration.id %>">
-              <div class="panel-body">
-                <%= inspiration.quote %>
-                <br>
-                <%= link_to book_inspiration_path(@book, inspiration) do %>
-                  <% if comment_number == 1 %>
-                    <%= comment_number %> Comment
-                  <% else %>
-                    <%= comment_number %> Comments
-                  <% end %>
-                <% end %>
-                <% if current_user && inspiration.user == current_user %>
-                  <div style="margin: 10px" class="center">
-                  <%= link_to edit_book_inspiration_path(@book.id, inspiration) do %>
-                  <span class="glyphicon glyphicon-pencil"></span>
-                  <span style="padding-right:8px">Edit</span>
-                  <% end %>
-                  <%= link_to book_inspirations_path(@book.id), method: :delete, data: { confirm: 'Are you sure?' } do %>
-                  <span class="glyphicon glyphicon-trash"></span>
-                  Delete
-                <% end %>
-                </div>
-
-                <!-- Modal -->
-                <div class="modal fade" id="modal<%= inspiration.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                      </div>
-                      <div class="modal-body">
-                        <%= render "inspirations/showPartial", :locals => { :inspiration => @inpiration } %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              <% end %>
-              </div>
-            </div>
-          <% end %>
-        </div>
+          <%= render @inspirations %>
+          <%= render 'inspirations/modal' %>
       </div>
-
+    </div>
+ 
     <!-- For seeing a grid that is flush <div class="col-sm-10 col-md-10 col-lg-10">
       <ul class="cbp-rfgrid">
         <% @inspirations.each do |inspiration| %>
@@ -75,13 +21,3 @@
     
   </div><!-- end the row-->
 </div>
-<script>
-$(document).ready(function() {
-  var $inspiration_dialog = $('#inspiration-collection').dialog({ 
-    autoOpen: false, 
-    title: 'View',
-    modal: true,
-    draggable: false
-  });
-});
-</script>
