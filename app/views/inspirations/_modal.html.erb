@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div id="inspirationModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="quoteTitle" aria-hidden="true">
+<div id="inspirationModal<%= inspiration.id %>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="quoteTitle" aria-hidden="true">
   <div class="modal-dialog modal-lg">
  
     <div class="modal-content">
@@ -16,7 +16,7 @@
  
             <div class="col-md-7 inspiration">
               <p id="inspiration-quote"  class="inspiration-text">
-                @inspiration.quote
+                <%= inspiration.quote %>
               </p>
  
               <div class="pull-right">
@@ -25,19 +25,6 @@
               </div>
             </div>
 
-            <div class="col-md-4">
-              <div class="comment-container">
-                <% @comments.each do |comment| %>
-                  <div class="comment">
-                    <%= comment.content %><br>
-                    <%= link_to 'Edit', edit_book_inspiration_comment_path(@book, @inspiration, comment) %> |
-                    <%= link_to 'Delete', book_inspiration_comment_path(@book, @inspiration, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
-                  </div>
-              </div>
-             <% end %>
-          
-              <%= link_to 'New Comment', new_book_inspiration_comment_path(@book, @inspiration), class:"btn btn-primary" %>
-            </div>
           </div><!-- end the row -->
         </div><!-- end the container -->
       </div><!-- end the modal boday -->
@@ -46,10 +33,10 @@
  
         <div class="col-md-4">
           <div id="inspiration-comments" class="comment-container">
-            <%# render @book.inspirations.first.comments %>
+            <%= render inspiration.comments %>
           </div>
  
-          <%= link_to 'New Comment', new_book_inspiration_comment_path(@book, @book.inspirations.first), :class => "btn btn-primary" %>
+          <%= link_to 'New Comment', new_book_inspiration_comment_path(@book, inspiration), :class => "btn btn-primary" %>
         </div>
  
       </div>
@@ -57,10 +44,3 @@
   </div>
 </div>
 <!-- Modal -->
- 
-<script>
-  $('.panel-body').click(function(){ 
-    var panel = $(this);
-    $('#inspiration-quote').html( panel.data('inspiration') );
-  });
-</script>
