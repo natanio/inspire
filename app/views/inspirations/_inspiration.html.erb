@@ -6,7 +6,7 @@
     <br>
  
     <%= link_to book_inspiration_path(inspiration.book_id, inspiration) do %>
-	    <%= inspiration.comments.size %> <%=	"Comment".pluralize(inspiration.comments.size) %>
+	    <span class="glyphicon glyphicon-comment"></span> <%= inspiration.comments.size %>
     <% end %>
  
     <div style="margin: 10px" class="center">

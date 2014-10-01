@@ -3,6 +3,14 @@
 <head>
   <title>Inspire</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <!-- styles needed by jScrollPane -->
+  <link type="text/css" href="assets/stylesheets/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+
+  <!-- the mousewheel plugin - optional to provide mousewheel support -->
+  <script type="text/javascript" src="assets/javascripts/jquery.mousewheel.js"></script>
+
+  <!-- the jScrollPane script -->
+  <script type="text/javascript" src="assets/javascripts/jquery.jscrollpane.min.js"></script>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
