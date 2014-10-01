@@ -23,8 +23,8 @@ class BooksController < ApplicationController
 
 
         # Perform the Search
-        req = Request.new('accesskey', 'inspirati0caf-20', 'us', false)
-        req.config['secret_key_id'] = 'secretkey'
+        req = Request.new( ENV['AWS_ACCESS_KEY_ID'], 'inspirati0caf-20', 'us', false)
+        req.config['secret_key_id'] = ENV['AWS_SECRET_ACCESS_KEY']
 
         resp = req.search( is, rg )
 
@@ -133,8 +133,8 @@ class BooksController < ApplicationController
 
 
         # Perform the Search
-        req = Request.new('accesskey', 'inspirati0caf-20', 'us', false)
-        req.config['secret_key_id'] = 'secretkey'
+        req = Request.new( ENV['AWS_ACCESS_KEY_ID'], 'inspirati0caf-20', 'us', false)
+        req.config['secret_key_id'] = ENV['AWS_SECRET_ACCESS_KEY']
 
         resp = req.search( is, rg )
 

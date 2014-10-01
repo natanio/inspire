@@ -22,6 +22,7 @@ gem "html_truncator", "~>0.2"
 gem 'searchkick'
 gem 'better_errors'
 gem 'binding_of_caller'
+gem 'figaro'
 
 group :development, :test do
      gem 'sqlite3'
