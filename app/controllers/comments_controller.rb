@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @comment = Comment.new
+    @inspiration.comments.new(comment_params)
   end
 
   # GET /comments/1/edit
@@ -27,9 +27,9 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
+    @inspiration.comments.new(comment_params)
     @comment.user_id = current_user.id
-    @comment.inspiration_id = @inspiration.id
+    
 
     respond_to do |format|
       if @comment.save
