@@ -11,7 +11,18 @@
         </button>
           <div class="row">
  
-            <div class="col-md-7 inspiration max-height no-overflow">
+            <div class="col-md-7 inspiration">
+              <% if current_user.try(:admin?) %>
+                <%= link_to edit_book_inspiration_path(inspiration.book_id, inspiration) do %>
+                  <span class="glyphicon glyphicon-pencil"></span>
+                  <span style="padding-right:8px">Edit</span>
+                <% end %>
+           
+                <%= link_to book_inspirations_path(inspiration.book_id), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <span class="glyphicon glyphicon-trash"></span>
+                    Delete
+                <% end %>
+              <% end %>
               <p id="inspiration-quote"  class="inspiration-text">
                 <%= inspiration.quote %>
               </p>
@@ -23,12 +34,18 @@
             </div>
 
             <div class="col-md-5">
+              <% if inspiration.comments.nil? %>
               <div id="inspiration-comments" class="comment-container scroll-pane" >
               <%= render inspiration.comments %>
               </div>
               <div class="center">
                 <%= link_to 'New Comment', new_book_inspiration_comment_path(@book, inspiration), :class => "btn btn-primary" %>
               </div>
+              <% else %>
+              <div class="center" style="padding-top:300px;">
+                <%= link_to 'Add a Comment', new_book_inspiration_comment_path(@book, inspiration), :class => "btn btn-primary" %>
+              </div>
+              <% end %>
             </div>
           </div><!-- end the row -->
         </div><!-- end the container -->
@@ -41,10 +58,3 @@
   </div>
 </div>
 <!-- Modal -->
-
-<script>
-  $(function()
-  {
-    $('.scroll-pane').jScrollPane();
-  });
-</script>
