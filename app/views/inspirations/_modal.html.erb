@@ -39,7 +39,7 @@
               <%= render inspiration.comments %>
               </div>
               <div class="center">
-                <% render partial: '/comments/simpleComment', locals: {inspiration: @inspiration }, :collection => inspiration.comments %>
+                <%= render partial: '/comments/simpleComment', locals: { inspiration: inspiration }, :collection => inspiration.comments %>
                 <%= link_to 'New Comment', new_book_inspiration_comment_path(@book, inspiration), :class => "btn btn-primary" %>
               </div>
               <% else %>
