@@ -14,6 +14,10 @@ Inspire::Application.routes.draw do
     end
   end
 
+  resources :inspirations do
+      resources :comments
+    end
+    
   root "books#index"
 
   # The priority is based upon order of creation: first created -> highest priority.

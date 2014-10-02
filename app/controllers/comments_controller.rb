@@ -17,7 +17,9 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @inspiration.comments.new(comment_params)
+    @inspiration = Inspiration.find(params[:inspiration_id])
+    @comment = Comment.new(params[:comment])
+    #@comment = Comment.new
   end
 
   # GET /comments/1/edit
@@ -27,7 +29,8 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @inspiration.comments.new(comment_params)
+    @inspiration = Inspiration.find(params[:inspiration_id])
+    @comment = Comment.new(params[:comment])
     @comment.user_id = current_user.id
     
 
@@ -59,6 +62,7 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+    @comment = Comment.find(params[:id])
     @comment.destroy
     respond_to do |format|
       format.html { redirect_to @book }

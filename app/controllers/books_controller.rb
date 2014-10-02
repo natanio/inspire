@@ -67,7 +67,9 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+    @inspiration = Inspiration.find(params[:inspiration_id])
     @inspirations = Inspiration.where(book_id: @book.id)
+    @comment = Comment.new( :inspiration => @inspiration )  
   end
 
   # GET /books/new
