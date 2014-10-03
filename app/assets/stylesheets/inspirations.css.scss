@@ -26,11 +26,9 @@
 }
 
 .inspiration {
-	background: rgb(97, 202, 198);
-	margin-right: 3em;
-	padding: 5em;
-	max-height: 600px;
-	max-width: 600px;
+	height: 600px;
+	width: 600px;
+	background-size: 100%;
 }
 
 p.inspiration-text {
@@ -40,4 +38,5 @@ p.inspiration-text {
 	line-height: 2em;
 	margin: 0 auto;
 	color: whitesmoke;
+	padding: 2em;
 }

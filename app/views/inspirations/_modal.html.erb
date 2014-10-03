@@ -11,7 +11,7 @@
         </button>
           <div class="row">
  
-            <div class="col-md-7 inspiration">
+            <div class="col-md-7">
               <% if current_user.try(:admin?) %>
                 <%= link_to edit_book_inspiration_path(inspiration.book_id, inspiration) do %>
                   <span class="glyphicon glyphicon-pencil"></span>
@@ -23,22 +23,26 @@
                     Delete
                 <% end %>
               <% end %>
-              <p id="inspiration-quote"  class="inspiration-text">
-                <%= inspiration.quote %>
-              </p>
- 
-              <div class="pull-right">
-                <p class="inspiration-credit">- <%= link_to @book.title, @book.link, id: 'book-link' %></p>
-                <p class="inspiration-credit">pg. <span id="page_number">0<span></p>
+              <div class="inspiration">
+                <p id="inspiration-quote"  class="inspiration-text">
+                  <%= inspiration.quote %>
+                </p>
+   
+                <div class="pull-right">
+                  <p class="inspiration-credit">- <%= link_to @book.title, @book.link, id: 'book-link' %></p>
+                  <p class="inspiration-credit">pg. <span id="page_number">0<span></p>
+                </div>
               </div>
-            </div>
+              </div>
 
             <div class="col-md-5">
               <h3 class="featurette-title">Comments</h2>
               <% if inspiration.comments.size > 0 %>
               <div id="inspiration-comments" class="comment-container scroll-pane" >
               <%= render inspiration.comments %>
-              <%= render partial: '/comments/simpleComment', locals: { inspiration: inspiration } %>
+              </div>
+              <div class="comment-container">
+                <%= render partial: '/comments/simpleComment', locals: { inspiration: inspiration } %>
               </div>
               
               <% else %>
@@ -59,3 +63,8 @@
   </div>
 </div>
 <!-- Modal -->
+
+<style media="screen">
+  .inspiration { background: url('http://www.barnorama.com/wp-content/images/2013/01/instagram_02/01-instagram_02.jpg') no-repeat;
+  }
+</style>
