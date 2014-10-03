@@ -34,6 +34,7 @@
             </div>
 
             <div class="col-md-5">
+              <h3 class="featurette-title">Comments</h2>
               <% if inspiration.comments.size > 0 %>
               <div id="inspiration-comments" class="comment-container scroll-pane" >
               <%= render inspiration.comments %>
@@ -41,9 +42,9 @@
               </div>
               
               <% else %>
-
-              <div class="center" style="padding-top:300px;">
-                <%= link_to 'Add a Comment', new_book_inspiration_comment_path(@book, inspiration), :class => "btn btn-primary" %>
+              <p><em>Have something to say about this?</em></p>
+              <div class="center">
+                <%= render partial: '/comments/simpleComment', locals: { inspiration: inspiration } %>
               </div>
               <% end %>
             </div>
