@@ -30,13 +30,14 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @inspiration = Inspiration.find(params[:inspiration_id])
-    @comment = Comment.new(params[:comment])
+    @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
+    @comment.inspiration_id = @inspiration.id
     
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to book_inspiration_path(@book,@inspiration), notice: 'Comment was successfully created.' }
+        format.html { redirect_to @book, notice: 'Comment was successfully created.' }
         format.json { render action: 'show', status: :created, location: @comment }
       else
         format.html { render action: 'new' }

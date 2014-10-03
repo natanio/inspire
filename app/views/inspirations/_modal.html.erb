@@ -37,12 +37,11 @@
               <% if inspiration.comments.size > 0 %>
               <div id="inspiration-comments" class="comment-container scroll-pane" >
               <%= render inspiration.comments %>
+              <%= render partial: '/comments/simpleComment', locals: { inspiration: inspiration } %>
               </div>
-              <div class="center">
-                <%= render partial: '/comments/simpleComment', locals: { inspiration: inspiration }, :collection => inspiration.comments %>
-                <%= link_to 'New Comment', new_book_inspiration_comment_path(@book, inspiration), :class => "btn btn-primary" %>
-              </div>
+              
               <% else %>
+
               <div class="center" style="padding-top:300px;">
                 <%= link_to 'Add a Comment', new_book_inspiration_comment_path(@book, inspiration), :class => "btn btn-primary" %>
               </div>
