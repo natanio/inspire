@@ -5,5 +5,5 @@
 $ ->
 	$('#books, #books2').imagesLoaded ->
 		$('#books, #books2').masonry
-			itemSelector: '.box'
+			itemSelector: '.books-box'
 			isFitWidth: true

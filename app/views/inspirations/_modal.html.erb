@@ -34,11 +34,11 @@
                   <p class="inspiration-credit">pg. <span id="page_number">0<span></p>
                 </div>
               </div>
+              <%= render "layouts/social" %>
               </div>
 
             <div class="col-md-5">
-              <%= render "layouts/social" %>
-              <h3 class="featurette-title">Comments</h2>
+              <h3 class="featurette-title">Comments</h2><hr>
               <% if inspiration.comments.size > 0 %>
               <div id="inspiration-comments" class="comment-container scroll-pane" >
               <%= render inspiration.comments %>
@@ -57,10 +57,6 @@
           </div><!-- end the row -->
         </div><!-- end the container -->
       </div><!-- end the modal boday -->
- 
-      <div class="modal-footer">
-        
-      </div>
     </div>
   </div>
 </div>

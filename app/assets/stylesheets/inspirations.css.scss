@@ -57,6 +57,9 @@ p.inspiration-text {
 	background: rgb(163, 92, 219);
 	padding: 5px 0px 2px 0px;
 	color: white;
+	box-shadow: inset -6px 0 8px -1px #8934CC;
+	-webkit-box-shadow: inset -6px 0 8px -1px #8934CC;
+	-moz-box-shadow: inset -6px 0 8px -1px #8934CC;
 }
 
 .vote-arrows a {

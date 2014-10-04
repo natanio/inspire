@@ -3,7 +3,7 @@
     <p class="lead center">Please add a new book.</p>
     <div id="books2" class="transitions-enabled">
           <% @results.each do |book| %>
-            <div class="box panel panel-default">
+            <div class="books-box panel panel-default">
               <img src="<%= book[:image] %>">
               <div class="panel-body">
                 <%= book[:title] %><br>
