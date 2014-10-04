@@ -11,6 +11,11 @@
 
 /* Comment form */
 
+.comment-form {
+    background: #F6F3F3;
+    padding: 0px 10px 17px;
+}
+
 .comment-form:before, 
 .comment-form:after { 
     content: " "; display: table; 
@@ -44,17 +49,17 @@
     border: 3px solid #101010;
     margin-top: 20px;
 }
- 
-.comment-form textarea {
-    min-height: 100px;
-}
- 
+
 .comment-form input:focus,
 .comment-form textarea:focus,
 .comment-form label:active + input,
 .comment-form label:active + textarea {
     outline: none;
-    border: 3px solid #10689a;
+    border: 3px solid #a35cdb;
+}
+ 
+.comment-form textarea {
+    min-height: 100px;
 }
  
 .comment-form select:focus {

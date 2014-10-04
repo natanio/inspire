@@ -11,7 +11,7 @@
         </button>
           <div class="row">
             <%= render partial: 'votes/voter', locals: { book: @book, inspiration: inspiration } %>
-            
+
             <div class="col-md-7">
               <% if current_user.try(:admin?) %>
                 <%= link_to edit_book_inspiration_path(inspiration.book_id, inspiration) do %>
@@ -34,14 +34,10 @@
                   <p class="inspiration-credit">pg. <span id="page_number">0<span></p>
                 </div>
               </div>
-
-                <div class="social">
-                  
-                </div>
-
               </div>
 
             <div class="col-md-5">
+              <%= render "layouts/social" %>
               <h3 class="featurette-title">Comments</h2>
               <% if inspiration.comments.size > 0 %>
               <div id="inspiration-comments" class="comment-container scroll-pane" >
