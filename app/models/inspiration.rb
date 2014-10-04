@@ -2,6 +2,7 @@ class Inspiration < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :book
 	has_many :comments
+	has_many :votes, dependent: :destroy
 
 	delegate :title, :link, :to => :book, :prefix => true
 

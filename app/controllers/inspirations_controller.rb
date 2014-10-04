@@ -17,6 +17,14 @@ class InspirationsController < ApplicationController
     @comments = Comment.where(inspiration_id: @inspiration.id)
   end
 
+  def up_votes
+    self.votes.where(value: 1).count
+  end
+
+  def down_votes
+    self.votes.where(value: -1).count
+  end
+
   # GET /inspirations/new
   def new
     @inspiration = Inspiration.new
@@ -85,6 +93,10 @@ class InspirationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inspiration_params
-      params.require(:inspiration).permit(:quote, :page_number, :likes)
+      params.require(:inspiration).permit(:quote, :page_number, :likes, :value)
+    end
+
+    def points_dammit
+      @inspiration.votes.sum(:value).count
     end
 end

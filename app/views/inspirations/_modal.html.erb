@@ -10,7 +10,8 @@
           <span>&times;</span><span class="sr-only">Close</span>
         </button>
           <div class="row">
- 
+            <%= render partial: 'votes/voter', locals: { book: @book, inspiration: inspiration } %>
+            
             <div class="col-md-7">
               <% if current_user.try(:admin?) %>
                 <%= link_to edit_book_inspiration_path(inspiration.book_id, inspiration) do %>
@@ -33,6 +34,11 @@
                   <p class="inspiration-credit">pg. <span id="page_number">0<span></p>
                 </div>
               </div>
+
+                <div class="social">
+                  
+                </div>
+
               </div>
 
             <div class="col-md-5">
@@ -57,7 +63,7 @@
       </div><!-- end the modal boday -->
  
       <div class="modal-footer">
- 
+        
       </div>
     </div>
   </div>

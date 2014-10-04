@@ -68,7 +68,20 @@ class BooksController < ApplicationController
   # GET /books/1.json
   def show
     @inspirations = Inspiration.where(book_id: @book.id)
-    @comment = Comment.new( :inspiration => @inspiration )  
+    @comment = Comment.new( :inspiration => @inspiration ) 
+
+    def up_votes
+      @inspiration.votes.where(value: 1).count
+    end
+
+    def down_votes
+      @inspiration.votes.where(value: -1).count
+    end
+
+    def points
+      @inspiration.votes.sum(:value).to_i
+    end
+ 
   end
 
   # GET /books/new
