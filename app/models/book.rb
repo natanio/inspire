@@ -5,4 +5,5 @@ class Book < ActiveRecord::Base
 	has_many :comments, through: :inspirations
 
 	searchkick
+
 end

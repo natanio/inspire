@@ -2,40 +2,50 @@
 <h2 class=".masthead">Edit your account</h2>
 </div>
 
-<div class="signup">
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { :class => "user-form", method: :put }) do |f| %>
+<div class="row update-user-form">
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { :multipart => true, :class => "user-form", method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <p class="float"><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></p>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  
-  <p class="float"><%= f.label :username %><br />
-  <%= f.text_field :username %></p>
-
-  <p class="float"><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %></p>
-
-  <p class="float"><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></p>
-
-  <p class="float"><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %></p>
-
-  <div class="user-submit-wrap">
-    <p class="clearfix">
-      <%= f.submit "Update", class: "user-submit" %></p>
-<% end %>
-    <br>
-    <br>
-    <%= link_to "Back", :back %>
-    <div style="margin-top: 25px; border: 1px solid; padding: 25px 20px;"><h3>Unhappy?</h3>
-
-      <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
-    </div>
+  <div class="col-md-3">
+    <p class="float">
+        <%= f.label :profile_image %><br />
+        <%= image_tag(current_user.profile_image.url(:medium), class: 'img-circle') %>
+        <%= f.file_field :profile_image %>
+    </p>
   </div>
+
+  <div class="col-md-9">
+    <p class="float"><%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %></p>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    
+    <p class="float"><%= f.label :username %><br />
+    <%= f.text_field :username %></p>
+
+    <p class="float"><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.password_field :password, autocomplete: "off" %></p>
+
+    <p class="float"><%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off" %></p>
+
+    <p class="float"><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.password_field :current_password, autocomplete: "off" %></p>
+
+    <div class="user-submit-wrap">
+      <p class="clearfix">
+        <%= f.submit "Update", class: "user-submit" %></p>
+  <% end %>
+      <br>
+      <br>
+      <%= link_to "Back", :back %>
+    </div>
+    </div>
+    <div class="col-md-9" style="margin-top: 25px; border: 1px solid; padding: 25px 20px;"><h3>Unhappy?</h3>
+
+        <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
+      </div>
 </div>
