@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
    has_many :comments, dependent: :destroy
    has_many :votes, dependent: :destroy
 
-   has_attached_file :profile_image, :styles => { :medium => "300x300#", :thumb => "100x100#" }, :default_url => "missing.png", :s3_host_name => "s3-us-west-2.amazonaws.com"
+   has_attached_file :profile_image, :styles => { :medium => "250x250#", :thumb => "100x100#" }, :default_url => "missing.png", :s3_host_name => "s3-us-west-2.amazonaws.com"
 
    validates_attachment_content_type :profile_image, :content_type => /\Aimage\/.*\Z/
 end
