@@ -16,8 +16,6 @@
 //= require jquery.turbolinks
 //= require turbolinks
 //= require masonry/jquery.masonry
+//= require jquery.mousewheel
+//= require jquery.jscrollpane
 //= require_tree .
-
-$('#modal<%= @inspiration.id %>').click(function(){
-    $inspiration_dialog.dialog('open');
-});

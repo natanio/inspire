@@ -9,7 +9,7 @@
 	 		<div class="col-sm-4 col-md-4 col-lg-4"><%= comment.created_at.strftime("%b %d, %Y") %></div>
 	 		<div class="col-sm-4 col-md-4 col-lg-4"></div>
 	 		<div class="col-sm-4 col-md-4 col-lg-4">
-	 		<% unless current_user == comment.user_id %>
+	 		<% if current_user && comment.user == current_user %>
 		 	<%= link_to 'Edit', comment.to_edit_path, class: 'comment-footer' %> |
 		 	<%= link_to 'Delete', comment.to_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'comment-footer' %>
 		 	<% end %>
