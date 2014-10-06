@@ -16,17 +16,6 @@
             </div>
 
             <div class="col-md-7">
-              <% if current_user.try(:admin?) %>
-                <%= link_to edit_book_inspiration_path(inspiration.book_id, inspiration) do %>
-                  <span class="glyphicon glyphicon-pencil"></span>
-                  <span style="padding-right:8px">Edit</span>
-                <% end %>
-           
-                <%= link_to book_inspirations_path(inspiration.book_id), method: :delete, data: { confirm: 'Are you sure?' } do %>
-                  <span class="glyphicon glyphicon-trash"></span>
-                    Delete
-                <% end %>
-              <% end %>
               <div class="inspiration">
                 <p id="inspiration-quote"  class="inspiration-text">
                   <%= inspiration.quote %>
@@ -38,6 +27,18 @@
                 </div>
               </div>
               <%= render partial: "layouts/social", locals: { book: @book, inspiration: inspiration } %>
+              
+              <% if current_user.try(:admin?) %>
+                <%= link_to edit_book_inspiration_path(inspiration.book_id, inspiration) do %>
+                  <span class="glyphicon glyphicon-pencil"></span>
+                  <span style="padding-right:8px">Edit</span>
+                <% end %>
+           
+                <%= link_to book_inspirations_path(inspiration.book_id), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <span class="glyphicon glyphicon-trash"></span>
+                    Delete
+                <% end %>
+              <% end %>
               </div>
 
             <div class="col-md-5">
