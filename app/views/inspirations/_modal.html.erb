@@ -26,7 +26,6 @@
                   <p class="inspiration-credit">pg. <span id="page_number">0<span></p>
                 </div>
               </div>
-              <%= render partial: "layouts/social", locals: { book: @book, inspiration: inspiration } %>
               
               <% if current_user.try(:admin?) %>
                 <%= link_to edit_book_inspiration_path(inspiration.book_id, inspiration) do %>
@@ -42,6 +41,8 @@
               </div>
 
             <div class="col-md-5">
+              <%= render partial: "layouts/social", locals: { book: @book, inspiration: inspiration } %>
+              
               <% if inspiration.comments.size > 0 %>
               <div id="inspiration-comments" class="comment-container scroll-pane" >
               <%= render inspiration.comments %>
