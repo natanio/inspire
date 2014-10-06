@@ -37,7 +37,7 @@
                   <p class="inspiration-credit">pg. <span id="page_number">0<span></p>
                 </div>
               </div>
-              <%= render "layouts/social" %>
+              <%= render partial: "layouts/social", locals: { book: @book, inspiration: inspiration } %>
               </div>
 
             <div class="col-md-5">
