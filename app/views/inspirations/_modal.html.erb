@@ -10,7 +10,10 @@
           <span>&times;</span><span class="sr-only">Close</span>
         </button>
           <div class="row">
-            <%= render partial: 'votes/voter', locals: { book: @book, inspiration: inspiration } %>
+            <div class="vote-arrows pull-left">
+              <%= render partial: 'votes/voter', locals: { book: @book, inspiration: inspiration } %>
+              <%= render partial: 'favorites/favorite_inspiration', locals: { book: @book, inspiration: inspiration } %>
+            </div>
 
             <div class="col-md-7">
               <% if current_user.try(:admin?) %>
@@ -62,6 +65,6 @@
 <!-- Modal -->
 
 <style media="screen">
-  .inspiration { background: url('http://www.barnorama.com/wp-content/images/2013/01/instagram_02/01-instagram_02.jpg') no-repeat;
+  .inspiration { background: url('http://www.tocofi.com/wp-content/uploads/2012/09/instagram-art-gallery_digital-photography-4.jpg') no-repeat;
   }
 </style>

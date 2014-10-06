@@ -1,0 +1,11 @@
+<div class="favorite">
+	<%- unless current_user.favorite_inspirations.exists?(id: inspiration.id) -%>
+	<%= link_to favorites_path(inspiration_id: inspiration), method: :post do %>
+		<span class="glyphicon glyphicon-star-empty"></span>
+		<% end %>
+	<%- else -%>
+	<%= link_to favorite_path(inspiration), method: :delete do %>
+		<span class="glyphicon glyphicon-star"></span>
+		<% end %>
+	<%- end -%>
+</div>

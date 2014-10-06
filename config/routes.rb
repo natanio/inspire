@@ -19,6 +19,8 @@ Inspire::Application.routes.draw do
   resources :inspirations do
       resources :comments, only: [:create, :edit, :destroy]
     end
+
+  resources :favorites, only: [:create, :destroy]
     
   root "books#index"
 
