@@ -96,3 +96,15 @@
     letter-spacing: 0.5px;
     line-height: 10px;
 }
+
+.comment-footer, comment-footer a {
+    font-size: 12px;
+    margin-top: 1em;
+    color: #a7a7a7;
+}
+
+.comment-footer .col-sm-4,
+.comment-footer .col-md-4,
+.comment-footer .col-lg-4 {
+    padding: 0px;
+}
