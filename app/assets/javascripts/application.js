@@ -18,4 +18,5 @@
 //= require masonry/jquery.masonry
 //= require jquery.mousewheel
 //= require jquery.jscrollpane
+//= require jquery.sharrre
 //= require_tree .
