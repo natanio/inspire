@@ -1,4 +1,4 @@
-<%= form_for [@book, inspiration, @comment], :html => { :class => "comment-form" } do |f| %>
+<%= form_for [@book, inspiration, @comment], :html => { :class => "comment-form", remote: true } do |f| %>
 <%= f.hidden_field :inspiration_id %> 
   <% if @comment.errors.any? %>
     <div id="error_explanation">
@@ -13,27 +13,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.text_field :content, placeholder: "Add a comment & hit enter.", :id => 'comment_submit' %>
+    <%= f.text_field :content, placeholder: "Add a comment & hit enter.", :id => 'comment_submit#{@comment.inspiration}' %>
   </div>
 
 <% end %>
-
-<script>
-  $(document).on('keypress', '#comment_submit', function(event) { 
-    if ( event.which == 13 ) {
-        event.preventDefault();
-        var myData = $( "form" ).serialize();
-              $.ajax({
-                  type: "POST",
-                  data: myData,
-                  url: <%= inspiration_comments_path(inspiration) %>,
-                  success: function(data){
-                if(data){
-                      alert('success')
-                }  
-              }        
-        }); 
-    }
-    
-  });
-</script>
