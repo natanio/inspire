@@ -52,7 +52,10 @@
               </div>
               
               <% else %>
-              <p><em>Have something to say about this?</em></p>
+              
+              <div id="inspiration-comments" class="comment-container scroll-pane" >
+                <p><em>Have something to say about this?</em></p>
+              </div>
               <div class="center">
                 <%= render partial: '/comments/simpleComment', locals: { inspiration: inspiration } %>
               </div>
@@ -65,26 +68,6 @@
   </div>
 </div>
 <!-- Modal -->
-
-<script>
-  $(document).on('keypress', '#comment_submit', function(event) { 
-    if ( event.which == 13 ) {
-        event.preventDefault();
-        var myData = $( "form" ).serialize();
-              $.ajax({
-                  type: "POST",
-                  data: myData,
-                  url: <%= inspiration_comments_path(inspiration) %>,
-                  success: function(data){
-                if(data){
-                      alert('success')
-                }  
-              }        
-        }); 
-    }
-    
-  });
-</script>
 
 <style media="screen">
   .inspiration { background: url('http://www.tocofi.com/wp-content/uploads/2012/09/instagram-art-gallery_digital-photography-4.jpg') no-repeat;
