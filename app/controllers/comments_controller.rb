@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @comments = Comment.all.order("created_at DESC")
   end
 
   # GET /comments/1

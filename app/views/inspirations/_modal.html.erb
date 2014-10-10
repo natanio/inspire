@@ -45,7 +45,7 @@
               
               <% if inspiration.comments.size > 0 %>
               <div id="inspiration-comments" class="comment-container scroll-pane" >
-              <%= render inspiration.comments %>
+              <%= render inspiration.comments.reverse %>
               </div>
               <div class="comment-container">
                 <%= render partial: '/comments/simpleComment', locals: { inspiration: inspiration } %>
