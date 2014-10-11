@@ -1,6 +1,7 @@
 Inspire::Application.routes.draw do
 
   devise_for :users
+  resources :users
   get "pages/home"
   get "about" => "pages#about"
   get "contact" => "pages#contact"

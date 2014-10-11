@@ -1,0 +1,4 @@
+<%= @user.email %>
+<% @user_favorites.each do |fav| %>
+<%= link_to "Favorite", book_path(@book) %>
+<% end %>
