@@ -1,6 +1,6 @@
 <div class="favorite">
 	<%- unless current_user.favorite_inspirations.exists?(id: inspiration.id) -%>
-	<%= link_to favorites_path(inspiration_id: inspiration), remote: true, method: :post, :id => 'favorite_submit' + inspiration.id.to_s do %>
+	<%= link_to favorites_path(inspiration_id: inspiration), remote: true, method: :post, :id => 'favorite-submit' + inspiration.id.to_s do %>
 		<span class="glyphicon glyphicon-star-empty"></span>
 		<% end %>
 	<%- else -%>

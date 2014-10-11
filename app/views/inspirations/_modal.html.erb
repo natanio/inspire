@@ -14,7 +14,9 @@
               <div id="<%= 'vote-submit' + inspiration.id.to_s %>">
                 <%= render partial: 'votes/voter', locals: { book: @book, inspiration: inspiration } %>
               </div>
-              <%= render partial: 'favorites/favorite_inspiration', locals: { book: @book, inspiration: inspiration } %>
+              <div id="<%= 'favorite-submit' + inspiration.id.to_s %>">
+                <%= render partial: 'favorites/favorite_inspiration', locals: { book: @book, inspiration: inspiration } %>
+              </div>
             </div>
 
             <div class="col-md-7">

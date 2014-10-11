@@ -8,7 +8,7 @@ class VotesController < ApplicationController
 
 	def down_vote
 		update_vote(-1)
-		render partial: "votes/voter", locals: { book: @book, inspiration: @inspiration }
+		render :votes
 	end
 
 	private

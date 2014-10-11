@@ -1,0 +1,1 @@
+$('#favorite-submit<%= @inspiration.id.to_s %>').html('<%= escape_javascript( render partial: 'favorites/favorite_inspiration', locals: { book: @inspiration.book, inspiration: @inspiration }  ) %>');
