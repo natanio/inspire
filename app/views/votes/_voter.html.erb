@@ -1,5 +1,5 @@
-<div><%= link_to book_inspiration_up_vote_path(book, inspiration) do %>
-	<span class="glyphicon glyphicon-chevron-up"></span><% end %></div>
+<div><%= link_to book_inspiration_up_vote_path(book, inspiration), remote:true do %>
+<span class="glyphicon glyphicon-chevron-up"></span><% end %></div>
 <div><strong><%= inspiration.votes.sum(:value).to_i %></strong></div>
-<div><%= link_to book_inspiration_down_vote_path(book, inspiration) do %>
-	<span class="glyphicon glyphicon-chevron-down"></span><% end %></div>
+<div><%= link_to book_inspiration_down_vote_path(book, inspiration), remote:true do %>
+<span class="glyphicon glyphicon-chevron-down"></span><% end %></div>

@@ -3,12 +3,12 @@ class VotesController < ApplicationController
 
 	def up_vote
 		update_vote(1)
-		redirect_to :back
+		render :votes
 	end
 
 	def down_vote
 		update_vote(-1)
-		redirect_to :back
+		render partial: "votes/voter", locals: { book: @book, inspiration: @inspiration }
 	end
 
 	private

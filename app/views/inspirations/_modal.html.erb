@@ -11,7 +11,9 @@
         </button>
           <div class="row">
             <div class="vote-arrows pull-left">
-              <%= render partial: 'votes/voter', locals: { book: @book, inspiration: inspiration } %>
+              <div id="<%= 'vote-submit' + inspiration.id.to_s %>">
+                <%= render partial: 'votes/voter', locals: { book: @book, inspiration: inspiration } %>
+              </div>
               <%= render partial: 'favorites/favorite_inspiration', locals: { book: @book, inspiration: inspiration } %>
             </div>
 
