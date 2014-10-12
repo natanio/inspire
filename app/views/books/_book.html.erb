@@ -1,5 +1,6 @@
 <%= link_to( image_tag(book.aws_image_url, width: "200px"), book.url, class: "book-image")%>
       <br>
+      <%= render 'layouts/social' %>
       <div class="new-inspiration">
       <%= link_to book.url, class:"btn btn-success btn-lg" do %>
               <span class="glyphicon glyphicon-book"></span>  View on Amazon

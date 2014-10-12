@@ -1,0 +1,47 @@
+<div class="container-social">
+  <div class='row-social'>
+  	<div id="facebook facebook<%= inspiration.id %>" data-url="http://inspiredly.com/books/<%= book.id %>/inspirations/<%= inspiration.id %>" data-text="<%= inspiration.quote %>" data-title="Like"></div>
+  	<div id=" twitter twitter<%= inspiration.id %>" data-url="http://inspiredly.com/books/<%= book.id %>/inspirations/<%= inspiration.id %>" data-text="<%= inspiration.quote %>" data-title="Tweet"></div>
+  	<div id="pinterest pinterest<%= inspiration.id %>" data-url="http://inspiredly.com/books/<%= book.id %>/inspirations/<%= inspiration.id %>" data-text="<%= inspiration.quote %>" data-title="+1"></div>
+  </div>  	
+</div>
+
+<script>
+$('#twitter<%= inspiration.id %>').sharrre({
+  share: {
+    twitter: true
+  },
+  template: '<a class="box2" href="#"><i class='icon-twitter'></i><div class="count" href="#">{total}</div></a>',
+  enableHover: false,
+  enableTracking: true,
+  buttons: { twitter: {via: '_JulienH'}},
+  click: function(api, options){
+    api.simulateClick();
+    api.openPopup('twitter');
+  }
+});
+$('#facebook<%= inspiration.id %>').sharrre({
+  share: {
+    facebook: true
+  },
+  template: '<a class="box2" href="#"><i class='icon-facebook'></i><div class="count" href="#">{total}</div></a>',
+  enableHover: false,
+  enableTracking: true,
+  click: function(api, options){
+    api.simulateClick();
+    api.openPopup('facebook');
+  }
+});
+$('#pinterest<%= inspiration.id %>').sharrre({
+  share: {
+    pinterest: true
+  },
+  template: '<a class="box2" href="#"><i class='icon-pinterest'></i><div class="count" href="#">{total}</div></a>',
+  enableHover: false,
+  enableTracking: true,
+  click: function(api, options){
+    api.simulateClick();
+    api.openPopup('pinterest');
+  }
+});
+</script>

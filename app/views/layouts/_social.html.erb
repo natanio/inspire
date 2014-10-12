@@ -1,50 +1,28 @@
-<!-- <div class="container-social">
-  <div class='row-social'>
-  	<div id="facebook" data-url="http://inspiredly.com/books/<%= book.id %>/inspirations/<%= inspiration.id %>" data-text="<%= inspiration.quote %>" data-title="Like"></div>
-  	<div id="twitter" data-url="http://inspiredly.com/books/<%= book.id %>/inspirations/<%= inspiration.id %>" data-text="<%= inspiration.quote %>" data-title="Tweet"></div>
-  	<div id="pinterest" data-url="http://inspiredly.com/books/<%= book.id %>/inspirations/<%= inspiration.id %>" data-text="<%= inspiration.quote %>" data-title="+1"></div>
-  </div>
-
 <div class="container-social">
-  	
+    <div id="shareme" data-url="/books/<%= @book.id %>" data-text="Get inspired and share inspirations about <%= @book.title %>" data-title="share this page"></div>
 </div>
-
 <script>
-$('#twitter').sharrre({
+$('#shareme').sharrre({
   share: {
-    twitter: true
+    googlePlus: true,
+    facebook: true,
+    twitter: true,
+    digg: true,
+    delicious: true
   },
-  template: '<a class="box" href="#"><i class='icon-twitter'></i><div class="count" href="#">{total}</div></a>',
-  enableHover: false,
   enableTracking: true,
-  buttons: { twitter: {via: '_JulienH'}},
-  click: function(api, options){
-    api.simulateClick();
-    api.openPopup('twitter');
+  buttons: {
+    googlePlus: {size: 'tall', annotation:'bubble'},
+    facebook: {layout: 'box_count'},
+    twitter: {count: 'vertical'},
+    digg: {type: 'DiggMedium'},
+    delicious: {size: 'tall'}
+  },
+  hover: function(api, options){
+    $(api.element).find('.buttons').show();
+  },
+  hide: function(api, options){
+    $(api.element).find('.buttons').hide();
   }
 });
-$('#facebook').sharrre({
-  share: {
-    facebook: true
-  },
-  template: '<a class="box" href="#"><i class='icon-facebook'></i><div class="count" href="#">{total}</div></a>',
-  enableHover: false,
-  enableTracking: true,
-  click: function(api, options){
-    api.simulateClick();
-    api.openPopup('facebook');
-  }
-});
-$('#pinterest').sharrre({
-  share: {
-    pinterest: true
-  },
-  template: '<a class="box" href="#"><i class='icon-pinterest'></i><div class="count" href="#">{total}</div></a>',
-  enableHover: false,
-  enableTracking: true,
-  click: function(api, options){
-    api.simulateClick();
-    api.openPopup('pinterest');
-  }
-});
-</script> -->
+</script>
